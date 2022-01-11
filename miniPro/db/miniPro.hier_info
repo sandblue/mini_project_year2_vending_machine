@@ -1,0 +1,19 @@
+|MuxTwo
+bcd_1[0] => result.DATAB
+bcd_1[1] => result.DATAB
+bcd_1[2] => result.DATAB
+bcd_1[3] => result.DATAB
+bcd_2[0] => result.DATAA
+bcd_2[1] => result.DATAA
+bcd_2[2] => result.DATAA
+bcd_2[3] => result.DATAA
+selec => result.OUTPUTSELECT
+selec => result.OUTPUTSELECT
+selec => result.OUTPUTSELECT
+selec => result.OUTPUTSELECT
+result[0] <= result.DB_MAX_OUTPUT_PORT_TYPE
+result[1] <= result.DB_MAX_OUTPUT_PORT_TYPE
+result[2] <= result.DB_MAX_OUTPUT_PORT_TYPE
+result[3] <= result.DB_MAX_OUTPUT_PORT_TYPE
+
+

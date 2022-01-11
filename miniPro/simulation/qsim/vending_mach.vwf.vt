@@ -1,0 +1,482 @@
+// Copyright (C) 1991-2013 Altera Corporation
+// Your use of Altera Corporation's design tools, logic functions 
+// and other software and tools, and its AMPP partner logic 
+// functions, and any output files from any of the foregoing 
+// (including device programming or simulation files), and any 
+// associated documentation or information are expressly subject 
+// to the terms and conditions of the Altera Program License 
+// Subscription Agreement, Altera MegaCore Function License 
+// Agreement, or other applicable license agreement, including, 
+// without limitation, that your use is for the sole purpose of 
+// programming logic devices manufactured by Altera and sold by 
+// Altera or its authorized distributors.  Please refer to the 
+// applicable agreement for further details.
+
+// *****************************************************************************
+// This file contains a Verilog test bench with test vectors .The test vectors  
+// are exported from a vector file in the Quartus Waveform Editor and apply to  
+// the top level entity of the current Quartus project .The user can use this   
+// testbench to simulate his design using a third-party simulation tool .       
+// *****************************************************************************
+// Generated on "11/17/2016 11:21:01"
+                                                                        
+// Verilog Self-Checking Test Bench (with test vectors) for design :    vending_mach
+// 
+// Simulation tool : 3rd Party
+// 
+
+`timescale 1 ps/ 1 ps
+module vending_mach_vlg_sample_tst(
+	in_buy,
+	in_clk,
+	in_five,
+	in_one,
+	in_price,
+	in_ten,
+	sampler_tx
+);
+input  in_buy;
+input  in_clk;
+input  in_five;
+input  in_one;
+input [1:0] in_price;
+input  in_ten;
+output sampler_tx;
+
+reg sample;
+time current_time;
+always @(in_buy or in_clk or in_five or in_one or in_price or in_ten)
+                                                                                
+begin                                                 
+ if ($realtime > 0)                                   
+ begin                                                
+	if ($realtime == 0 || $realtime != current_time)  
+	begin									          
+		if (sample === 1'bx)                          
+			sample = 0;                               
+		else                                          
+			sample = ~sample;                         
+	end										          
+	current_time = $realtime;					      
+ end                                                  
+end                                                   
+
+assign sampler_tx = sample;
+endmodule
+
+module vending_mach_vlg_check_tst (
+	buzzer,
+	out_sevenSeg,
+	select_digit_one,
+	select_digit_two,
+	sampler_rx
+);
+input  buzzer;
+input [6:0] out_sevenSeg;
+input  select_digit_one;
+input  select_digit_two;
+input sampler_rx;
+
+reg  buzzer_expected;
+reg [6:0] out_sevenSeg_expected;
+reg  select_digit_one_expected;
+reg  select_digit_two_expected;
+
+reg  buzzer_prev;
+reg [6:0] out_sevenSeg_prev;
+reg  select_digit_one_prev;
+reg  select_digit_two_prev;
+
+reg  buzzer_expected_prev;
+reg [6:0] out_sevenSeg_expected_prev;
+reg  select_digit_one_expected_prev;
+reg  select_digit_two_expected_prev;
+
+reg  last_buzzer_exp;
+reg [6:0] last_out_sevenSeg_exp;
+reg  last_select_digit_one_exp;
+reg  last_select_digit_two_exp;
+
+reg trigger;
+
+integer i;
+integer nummismatches;
+
+reg [1:4] on_first_change ;
+
+
+initial
+begin
+trigger = 0;
+i = 0;
+nummismatches = 0;
+on_first_change = 4'b1;
+end
+
+// update real /o prevs
+
+always @(trigger)
+begin
+	buzzer_prev = buzzer;
+	out_sevenSeg_prev = out_sevenSeg;
+	select_digit_one_prev = select_digit_one;
+	select_digit_two_prev = select_digit_two;
+end
+
+// update expected /o prevs
+
+always @(trigger)
+begin
+	buzzer_expected_prev = buzzer_expected;
+	out_sevenSeg_expected_prev = out_sevenSeg_expected;
+	select_digit_one_expected_prev = select_digit_one_expected;
+	select_digit_two_expected_prev = select_digit_two_expected;
+end
+
+
+// expected out_sevenSeg[ 6 ]
+initial
+begin
+	out_sevenSeg_expected[6] = 1'bX;
+	out_sevenSeg_expected[6] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 5 ]
+initial
+begin
+	out_sevenSeg_expected[5] = 1'bX;
+	out_sevenSeg_expected[5] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 4 ]
+initial
+begin
+	out_sevenSeg_expected[4] = 1'bX;
+	out_sevenSeg_expected[4] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 3 ]
+initial
+begin
+	out_sevenSeg_expected[3] = 1'bX;
+	out_sevenSeg_expected[3] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 2 ]
+initial
+begin
+	out_sevenSeg_expected[2] = 1'bX;
+	out_sevenSeg_expected[2] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 1 ]
+initial
+begin
+	out_sevenSeg_expected[1] = 1'bX;
+	out_sevenSeg_expected[1] = #49999000 1'b0;
+end 
+// expected out_sevenSeg[ 0 ]
+initial
+begin
+	out_sevenSeg_expected[0] = 1'bX;
+	out_sevenSeg_expected[0] = #49999000 1'b0;
+end 
+
+// expected buzzer
+initial
+begin
+	buzzer_expected = 1'bX;
+	buzzer_expected = #49000 1'b0;
+end 
+
+// expected select_digit_one
+initial
+begin
+	select_digit_one_expected = 1'bX;
+	select_digit_one_expected = #49000 1'b0;
+end 
+
+// expected select_digit_two
+initial
+begin
+	select_digit_two_expected = 1'bX;
+	select_digit_two_expected = #49000 1'b0;
+end 
+// generate trigger
+always @(buzzer_expected or buzzer or out_sevenSeg_expected or out_sevenSeg or select_digit_one_expected or select_digit_one or select_digit_two_expected or select_digit_two)
+begin
+	trigger <= ~trigger;
+end
+
+always @(posedge sampler_rx or negedge sampler_rx)
+begin
+`ifdef debug_tbench
+	$display("Scanning pattern %d @time = %t",i,$realtime );
+	i = i + 1;
+	$display("| expected buzzer = %b | expected out_sevenSeg = %b | expected select_digit_one = %b | expected select_digit_two = %b | ",buzzer_expected_prev,out_sevenSeg_expected_prev,select_digit_one_expected_prev,select_digit_two_expected_prev);
+	$display("| real buzzer = %b | real out_sevenSeg = %b | real select_digit_one = %b | real select_digit_two = %b | ",buzzer_prev,out_sevenSeg_prev,select_digit_one_prev,select_digit_two_prev);
+`endif
+	if (
+		( buzzer_expected_prev !== 1'bx ) && ( buzzer_prev !== buzzer_expected_prev )
+		&& ((buzzer_expected_prev !== last_buzzer_exp) ||
+			on_first_change[1])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port buzzer :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", buzzer_expected_prev);
+		$display ("     Real value = %b", buzzer_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[1] = 1'b0;
+		last_buzzer_exp = buzzer_expected_prev;
+	end
+	if (
+		( out_sevenSeg_expected_prev[0] !== 1'bx ) && ( out_sevenSeg_prev[0] !== out_sevenSeg_expected_prev[0] )
+		&& ((out_sevenSeg_expected_prev[0] !== last_out_sevenSeg_exp[0]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[0] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[0] = out_sevenSeg_expected_prev[0];
+	end
+	if (
+		( out_sevenSeg_expected_prev[1] !== 1'bx ) && ( out_sevenSeg_prev[1] !== out_sevenSeg_expected_prev[1] )
+		&& ((out_sevenSeg_expected_prev[1] !== last_out_sevenSeg_exp[1]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[1] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[1] = out_sevenSeg_expected_prev[1];
+	end
+	if (
+		( out_sevenSeg_expected_prev[2] !== 1'bx ) && ( out_sevenSeg_prev[2] !== out_sevenSeg_expected_prev[2] )
+		&& ((out_sevenSeg_expected_prev[2] !== last_out_sevenSeg_exp[2]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[2] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[2] = out_sevenSeg_expected_prev[2];
+	end
+	if (
+		( out_sevenSeg_expected_prev[3] !== 1'bx ) && ( out_sevenSeg_prev[3] !== out_sevenSeg_expected_prev[3] )
+		&& ((out_sevenSeg_expected_prev[3] !== last_out_sevenSeg_exp[3]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[3] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[3] = out_sevenSeg_expected_prev[3];
+	end
+	if (
+		( out_sevenSeg_expected_prev[4] !== 1'bx ) && ( out_sevenSeg_prev[4] !== out_sevenSeg_expected_prev[4] )
+		&& ((out_sevenSeg_expected_prev[4] !== last_out_sevenSeg_exp[4]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[4] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[4] = out_sevenSeg_expected_prev[4];
+	end
+	if (
+		( out_sevenSeg_expected_prev[5] !== 1'bx ) && ( out_sevenSeg_prev[5] !== out_sevenSeg_expected_prev[5] )
+		&& ((out_sevenSeg_expected_prev[5] !== last_out_sevenSeg_exp[5]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[5] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[5] = out_sevenSeg_expected_prev[5];
+	end
+	if (
+		( out_sevenSeg_expected_prev[6] !== 1'bx ) && ( out_sevenSeg_prev[6] !== out_sevenSeg_expected_prev[6] )
+		&& ((out_sevenSeg_expected_prev[6] !== last_out_sevenSeg_exp[6]) ||
+			on_first_change[2])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port out_sevenSeg[6] :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", out_sevenSeg_expected_prev);
+		$display ("     Real value = %b", out_sevenSeg_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[2] = 1'b0;
+		last_out_sevenSeg_exp[6] = out_sevenSeg_expected_prev[6];
+	end
+	if (
+		( select_digit_one_expected_prev !== 1'bx ) && ( select_digit_one_prev !== select_digit_one_expected_prev )
+		&& ((select_digit_one_expected_prev !== last_select_digit_one_exp) ||
+			on_first_change[3])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port select_digit_one :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", select_digit_one_expected_prev);
+		$display ("     Real value = %b", select_digit_one_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[3] = 1'b0;
+		last_select_digit_one_exp = select_digit_one_expected_prev;
+	end
+	if (
+		( select_digit_two_expected_prev !== 1'bx ) && ( select_digit_two_prev !== select_digit_two_expected_prev )
+		&& ((select_digit_two_expected_prev !== last_select_digit_two_exp) ||
+			on_first_change[4])
+	)
+	begin
+		$display ("ERROR! Vector Mismatch for output port select_digit_two :: @time = %t",  $realtime);
+		$display ("     Expected value = %b", select_digit_two_expected_prev);
+		$display ("     Real value = %b", select_digit_two_prev);
+		nummismatches = nummismatches + 1;
+		on_first_change[4] = 1'b0;
+		last_select_digit_two_exp = select_digit_two_expected_prev;
+	end
+
+	trigger <= ~trigger;
+end
+initial 
+
+begin 
+$timeformat(-12,3," ps",6);
+#100000000;
+if (nummismatches > 0)
+	$display ("%d mismatched vectors : Simulation failed !",nummismatches);
+else
+	$display ("Simulation passed !");
+$finish;
+end 
+endmodule
+
+module vending_mach_vlg_vec_tst();
+// constants                                           
+// general purpose registers
+reg in_buy;
+reg in_clk;
+reg in_five;
+reg in_one;
+reg [1:0] in_price;
+reg in_ten;
+// wires                                               
+wire buzzer;
+wire [6:0] out_sevenSeg;
+wire select_digit_one;
+wire select_digit_two;
+
+wire sampler;                             
+
+// assign statements (if any)                          
+vending_mach i1 (
+// port map - connection between master ports and signals/registers   
+	.buzzer(buzzer),
+	.in_buy(in_buy),
+	.in_clk(in_clk),
+	.in_five(in_five),
+	.in_one(in_one),
+	.in_price(in_price),
+	.in_ten(in_ten),
+	.out_sevenSeg(out_sevenSeg),
+	.select_digit_one(select_digit_one),
+	.select_digit_two(select_digit_two)
+);
+
+// in_clk
+always
+begin
+	in_clk = 1'b0;
+	in_clk = #10000 1'b1;
+	#10000;
+end 
+
+// in_buy
+initial
+begin
+	in_buy = 1'b1;
+	in_buy = #1920000 1'b0;
+	in_buy = #960000 1'b1;
+	in_buy = #96960000 1'b0;
+end 
+
+// in_ten
+initial
+begin
+	in_ten = 1'b1;
+	in_ten = #7040000 1'b0;
+	in_ten = #1280000 1'b1;
+	in_ten = #10240000 1'b0;
+	in_ten = #2560000 1'b1;
+	in_ten = #17280000 1'b0;
+	in_ten = #1600000 1'b1;
+	in_ten = #6080000 1'b0;
+	in_ten = #1280000 1'b1;
+	in_ten = #8960000 1'b0;
+	in_ten = #3200000 1'b1;
+	in_ten = #14720000 1'b0;
+	in_ten = #1920000 1'b1;
+	in_ten = #23680000 1'b0;
+end 
+
+// in_five
+initial
+begin
+	in_five = 1'b1;
+	in_five = #11520000 1'b0;
+	in_five = #640000 1'b1;
+	in_five = #87680000 1'b0;
+end 
+
+// in_one
+initial
+begin
+	in_one = 1'b1;
+	in_one = #28800000 1'b0;
+	in_one = #1920000 1'b1;
+	in_one = #69120000 1'b0;
+end 
+// in_price[ 1 ]
+initial
+begin
+	repeat(12)
+	begin
+		in_price[1] = 1'b0;
+		in_price[1] = #4000000 1'b1;
+		# 4000000;
+	end
+	in_price[1] = 1'b0;
+end 
+// in_price[ 0 ]
+always
+begin
+	in_price[0] = 1'b0;
+	in_price[0] = #2000000 1'b1;
+	#2000000;
+end 
+
+vending_mach_vlg_sample_tst tb_sample (
+	.in_buy(in_buy),
+	.in_clk(in_clk),
+	.in_five(in_five),
+	.in_one(in_one),
+	.in_price(in_price),
+	.in_ten(in_ten),
+	.sampler_tx(sampler)
+);
+
+vending_mach_vlg_check_tst tb_out(
+	.buzzer(buzzer),
+	.out_sevenSeg(out_sevenSeg),
+	.select_digit_one(select_digit_one),
+	.select_digit_two(select_digit_two),
+	.sampler_rx(sampler)
+);
+endmodule
+

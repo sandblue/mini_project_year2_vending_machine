@@ -1,0 +1,15 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity insertCoin is
+     port
+
+end insertCoin;
+
+architecture Behavioral of insertCoin is
+
+	 
+begin
+
+end insertCoin;
